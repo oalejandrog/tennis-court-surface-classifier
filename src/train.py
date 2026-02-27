@@ -18,7 +18,7 @@ def train_model():
             restore_best_weights=True
             )
 
-    EPOCHS = 10
+    EPOCHS = 30
 
     history = model.fit(
             train_data,
