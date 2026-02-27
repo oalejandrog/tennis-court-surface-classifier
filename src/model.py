@@ -1,5 +1,5 @@
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 
 def build_tennis_court_surface_classifier():
     classifier = Sequential()
@@ -25,6 +25,9 @@ def build_tennis_court_surface_classifier():
 
     # (10,368)
     classifier.add(Dense(units=512, activation='relu'))
+
+    # Dropout
+    classifier.add(Dropout(0.5))
 
     # OUTPUT LAYER: 3 units for our 3 classes (Clay, Grass, Hard Court)
     classifier.add(Dense(units=3, activation='softmax'))
