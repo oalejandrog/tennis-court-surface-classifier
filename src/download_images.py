@@ -51,7 +51,8 @@ def download_images_for_class(class_name, search_term, base_path, max_images=30)
 if __name__ == "__main__":
     # Ensure folder structure is relative to this script or root
     # assuming we run from the root of 'tennis-court-surface-classifier'
-    base_data_path = Path("data/train")
+    train_data_path = Path("data/train")
+    val_data_path = Path("data/val")
     classes = {
         "clay": "clay tennis court",
         "grass": "grass tennis court",
@@ -59,6 +60,9 @@ if __name__ == "__main__":
     }
     
     for class_name, search_term in classes.items():
-        download_images_for_class(class_name, search_term, base_data_path, max_images=15)
+        print(f"--- Downloading for {class_name} ---")
+        download_images_for_class(class_name, search_term, train_data_path, max_images=40)
+        # Search again for val with a slight variation to avoid exact duplicates
+        download_images_for_class(class_name, search_term + " player", val_data_path, max_images=40)
     
     print("\nDataset download process complete!")
